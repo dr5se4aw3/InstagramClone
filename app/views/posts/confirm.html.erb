@@ -1,0 +1,27 @@
+<h2>確認画面</h2>
+<%= form_with(model: @post, url: posts_path, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this feed from being saved:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.label :content %>
+  <%= @post.content %>
+  <%= form.label :image %>
+  <%= image_tag (@post.image.url) if @post.image && @post.image.url %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :content %>
+  <%= form.submit "投稿する" %>
+<% end %>
+
+<%= form_with(model: @post, url: new_post_path, local: true, method: "get") do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

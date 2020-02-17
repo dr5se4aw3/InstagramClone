@@ -14,7 +14,11 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    if params[:back]
+      @post = current_user.posts.build(post_params)
+    else
+      @post = Post.new
+    end
   end
 
   # GET /posts/1/edit
@@ -24,8 +28,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.posts.new(post_params)
-
+    @post = current_user.posts.build(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -35,6 +38,11 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def confirm
+    @post = current_user.posts.build(post_params)
+    render :new if @post.invalid?
   end
 
   # PATCH/PUT /posts/1
