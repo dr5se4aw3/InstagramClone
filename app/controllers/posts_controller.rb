@@ -29,15 +29,12 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
-    respond_to do |format|
-      if @post.save
-        PostMailer.post_mail(@post).deliver
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      PostMailer.post_mail(@post).deliver
+      flash[:notice] = "投稿が完了しました"
+      redirect_to posts_path
+    else
+      render :new
     end
   end
 
