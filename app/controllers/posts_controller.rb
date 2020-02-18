@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
 
   # GET /posts/new
@@ -31,7 +32,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       PostMailer.post_mail(@post).deliver
-      flash[:notice] = "投稿が完了しました"
       redirect_to posts_path
     else
       render :new
