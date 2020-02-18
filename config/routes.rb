@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  #開発環境用レターオープナーのルーティング
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   #デフォルトページのルーティング
   get '', to: 'sessions#new'
-  
+
   #写真投稿機能のルーティング
   resources :posts do
     collection do
