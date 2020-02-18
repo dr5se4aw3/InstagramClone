@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   #お気に入り機能のルーティング
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:show,:create, :destroy]
 
   #セッション管理機能のルーティング
   resources :sessions, only: [:new, :create, :destroy]
