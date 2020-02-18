@@ -24,6 +24,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    unless current_user.id == @post.user_id
+      flash[:notice] = "他のユーザーの投稿は編集できません"
+      redirect_to posts_path and return
+    end
   end
 
   # POST /posts
@@ -60,10 +64,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+    unless current_user.id == @post.user_id
+      flash[:notice] = "他のユーザーの投稿は編集できません"
+      redirect_to posts_path and return
+    end
+    if @post.destroy
+      redirect_to posts_path, notice: "投稿の削除が完了しました"
     end
   end
 
