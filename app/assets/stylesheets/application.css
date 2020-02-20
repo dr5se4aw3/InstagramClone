@@ -10,6 +10,53 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self
  */
+
+/* ボックス配置確認用 */
+div{
+  border: solid 1px;
+}
+
+body{
+  background-color: #ededed;
+}
+
+header{
+  height: 60px;
+  background-color: white;
+}
+
+header .header_container{
+  padding: 0 30px;
+}
+
+header ul{
+  list-style: none;
+}
+
+header .btn_group{
+  text-align: right;
+}
+
+a{
+  color: white;
+}
+
+.post_container{
+  width: 40%;
+  margin: 0 auto;
+}
+.post_header{
+  height: 40px;
+}
+.post_header img{
+  height: 100%;
+}
+
+.post_image img{
+  width: 100%;
+  max-height: 100%;
+}

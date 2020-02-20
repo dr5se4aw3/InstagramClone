@@ -10,20 +10,24 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <ul>
-        <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
-        <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-        <li><%= link_to '投稿一覧へ', posts_path %></li>
-        <li><%= link_to '写真投稿画面へ', new_post_path %></li>
-    <% else %>
-        <li><%= link_to "ユーザー登録", new_user_path %></li>
-        <li><%= link_to "ログイン", new_session_path %></li>
-      </ul>
-    <% end %>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
+    <header>
+      <div class="header_container">
+        <div class="btn_group">
+          <% if logged_in? %>
+              <button type="button" class="btn btn-info btn-lg" role="button"><%= link_to "プロフィール", user_path(current_user.id) %></button>
+              <button type="button" class="btn btn-danger btn-lg" role="button"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></button>
+              <button type="button" class="btn btn-success btn-lg" role="button"><%= link_to '投稿一覧', posts_path %></button>
+              <button type="button" class="btn btn-primary btn-lg" role="button"><%= link_to '新規投稿', new_post_path %></button>
+          <% else %>
+              <button type="button" class="btn btn-primary btn-lg" role="button"><%= link_to "ユーザー登録", new_user_path %></button>
+              <button type="button" class="btn btn-primary btn-lg" role="button"><%= link_to "ログイン", new_session_path %></button>
+          <% end %>
+        </div>
+      </div>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+  </header>
     <%= yield %>
   </body>
 </html>

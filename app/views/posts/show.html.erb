@@ -1,25 +1,22 @@
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+<div class="post_container">
+  <div class="post_header">
+    <%= image_tag @post.user.image.url %>
+    <%= @post.user.name %>
+  </div>
+  <div class="post_image">
+    <%= image_tag @post.image.url %>
+  </div>
+  <div class="post_text">
+    <%= @post.content %>
+  </div>
+  <div class="post_menu">
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入りを解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @post.image.url %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user.name %>
-</p>
-
-<% unless @post.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入りを解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Edit', edit_post_path(@post) %>
 <%= link_to 'Back', posts_path %>
