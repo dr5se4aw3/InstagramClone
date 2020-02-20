@@ -1,6 +1,10 @@
 <div class="post_container">
   <div class="post_header">
-    <%= image_tag post.user.image.url %>
+    <% if post.user.image.url %>
+      <%= image_tag post.user.image.url %>
+    <% else %>
+      <%= image_tag '/public/no_image.jpg' %>
+    <% end %>
     <%= post.user.name %>
   </div>
   <div class="post_image">

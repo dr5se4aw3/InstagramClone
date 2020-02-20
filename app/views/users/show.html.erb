@@ -11,7 +11,11 @@
 
   <p>
     <strong>Image:</strong>
-    <%= image_tag @user.image.url %>
+    <% if @user.image.url %>
+      <%= image_tag @user.image.url %>
+    <% else %>
+      <%= image_tag "/public/no_image.jpg" %>
+    <% end %>
   </p>
 
   <p>
