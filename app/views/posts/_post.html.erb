@@ -1,19 +1,21 @@
 <div class="post_container">
   <div class="post_header">
-    <%= image_tag @post.user.image.url %>
-    <%= @post.user.name %>
+    <%= image_tag post.user.image.url %>
+    <%= post.user.name %>
   </div>
   <div class="post_image">
-    <%= image_tag @post.image.url %>
+    <%= image_tag post.image.url %>
   </div>
   <div class="post_text">
-    <%= @post.content %>
+    <%= post.content %>
   </div>
-  <div class="post_menu">
-    <% if @favorite.present? %>
-      <%= link_to 'お気に入りを解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-    <% else %>
-      <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+  <% if action_name != "index" %>
+    <div class="post_menu">
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入りを解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
