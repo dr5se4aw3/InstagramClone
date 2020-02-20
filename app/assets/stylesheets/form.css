@@ -1,0 +1,13 @@
+.form_container{
+  text-align: left;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.form_main{
+  margin: 30px 0;
+}
+
+.error_explanation{
+  text-align: left;
+}

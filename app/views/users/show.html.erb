@@ -1,19 +1,16 @@
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="profile_container">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @user.image.url %>
-</p>
-
-
-<%= link_to 'favorites', favorite_path %>
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Back', users_path %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @user.image.url %>
+  </p>
+</div>

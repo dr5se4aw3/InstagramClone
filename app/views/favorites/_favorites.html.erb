@@ -11,15 +11,7 @@
   </div>
 
     <div class="post_menu">
-      <% if action_name != "index" %>
-        <% if @favorite.present? %>
-          <%= link_to 'お気に入りを解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-warning' %>
-        <% else %>
-          <%= link_to 'お気に入り登録する', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
-        <% end %>
-      <% else %>
-        <%= link_to '確認', post_path(post.id), class: 'btn btn-info'  %>
-      <% end %>
+      <%= link_to '確認', post_path(post.id), class: 'btn btn-info'  %>
       <% if current_user.id == post.user_id %>
         <%= link_to '編集', edit_post_path(post), class: 'btn btn-success'  %>
         <%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
